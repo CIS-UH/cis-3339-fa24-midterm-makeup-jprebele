@@ -123,54 +123,39 @@ const chart_data = reactive({
 const dataLoaded = ref(false);
 const keys = ref([]);
 const values = ref([]);
-        // https://rapidapi.com/weatherapi/api/weatherapi-com/
-        async fetch_remote_data() {
-            const options = {
-                method: 'GET',
-                url: 'https://weatherapi-com.p.rapidapi.com/history.json',
-                params: {
-                    q: this.form_input.location,
-                    dt: this.form_input.start_dt,
-                    end_dt: this.form_input.end_dt,
-                    lang: 'en'
-                },
-                headers: {
-                    'X-RapidAPI-Key': '6c6f790650msh5ce4da2fced77a7p1b1776jsn247d9f531b74',
-                    'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
-                }
-            };
-            
-            try {
-                await axios.request(options).then((resp) => {
-                    // this.keys.forEach((element, index) => {
-                    //    this.daily_temp[element] = this.values[index];
-                    // });
-                    // console.log(this.daily_temp);
-
-                    const w_data = resp.data.forecast.forecastday; 
-                    this.keys = w_data.map((item) => item.date);
-                    this.values = w_data.map((item) => item.day.avgtemp_f);
-
-                    
-                    this.chart_data = {
-                        labels: this.keys, 
-                        datasets: [
-                            {
-                                label: "Average Temperature", 
-                                backgroundColor: "#f87979", 
-                                data: this.values, 
-                            },
-                        ],
-                    },
-                    
-                    this.dataLoaded = true;
-                })
-            } catch (error) {
-                console.error(error);
-            }
-            
-        }
+       
+//gets weather data from the api
+async function fetch_remote_data() {
+  const options = {
+//api request
+    method: 'GET',
+    url: 'https://weatherapi-com.p.rapidapi.com/history.json',
+    params: {
+      q: form_input.location,
+      dt: form_input.start_dt,
+      end_dt: form_input.end_dt,
+      lang: 'en'
     },
+    headers: {
+      'X-RapidAPI-Key': '6c6f790650msh5ce4da2fced77a7p1b1776jsn247d9f531b74',
+      'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+    }
+  };
+
+//api request using axios
+  try {
+    const resp = await axios.request(options);
+    const w_data = resp.data.forecast.forecastday;
+    keys.value = w_data.map((item) => item.date);
+    values.value = w_data.map((item) => item.day.avgtemp_f);
+
+//updating chart data values
+    chart_data.labels = keys.value;
+    chart_data.datasets[0].data = values.value;
+    dataLoaded.value = true;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 </script>
