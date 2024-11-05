@@ -79,12 +79,12 @@ import { Bar } from 'vue-chartjs'
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-export default {
-    components: {
-        // Line
-        //BarChart: Bar,
-        Bar,
-    },
+// a reactive field that is empty and ready to receive values
+const form_input = reactive({
+  start_dt: "",
+  end_dt: "",
+  location: "",
+});
     
     data() {
         return {
