@@ -62,10 +62,10 @@ table, th, td {
 }
 </style>
 
-<script>
-
+<script setup>
+// adding functions and libraries needed
+import { ref, reactive, onMounted } from "vue";
 import axios from "axios";
-
 import {
   Chart as ChartJS,
   Title,
@@ -77,7 +77,7 @@ import {
 } from 'chart.js'
 import { Bar } from 'vue-chartjs'
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default {
     components: {
