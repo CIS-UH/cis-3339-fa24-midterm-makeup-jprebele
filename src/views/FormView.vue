@@ -85,33 +85,40 @@ const form_input = reactive({
   end_dt: "",
   location: "",
 });
-    
-    data() {
-        return {
-            form_input: {
-                start_dt: "",
-                end_dt: "",
-                location: "",
-            },
 
-            chart_options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: "Time",
-                        },
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: "Temperature (F)",
-                        },
-                    },
-                },
-            },
+//reactive field for configuring the chart
+ const chart_options = reactive({
+  responsive: true,
+  maintainAspectRatio: true,
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: "Time",
+      },
+    },
+    y: {
+      title: {
+        display: true,
+        text: "Temperature (F)",
+      },
+    },
+  },
+});
+
+
+//reactive field for chart data
+const chart_data = reactive({
+  labels: [],
+  datasets: [
+    {
+      label: "Average Temperature",
+      backgroundColor: "#f87979",
+      data: [],
+    },
+  ],
+});
+
 
             chart_data: {
                 labels: [], 
