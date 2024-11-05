@@ -119,26 +119,10 @@ const chart_data = reactive({
   ],
 });
 
-
-            chart_data: {
-                labels: [], 
-                datasets: [
-                    {
-                        label: "Average Temperature", 
-                        backgroundColor: "#f87979", 
-                        data: [], 
-                    },
-                ],
-            },
-            dataLoaded: false,
-            
-            keys: [],
-            values: [],
-            // daily_temp: {},
-        };
-    },
-
-    methods: {
+//tracking to see if the data has loaded and arrays to hold api data values
+const dataLoaded = ref(false);
+const keys = ref([]);
+const values = ref([]);
         // https://rapidapi.com/weatherapi/api/weatherapi-com/
         async fetch_remote_data() {
             const options = {
