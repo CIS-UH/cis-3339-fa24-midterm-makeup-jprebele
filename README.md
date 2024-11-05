@@ -29,3 +29,12 @@ npm run build
 ```
 #### Required libraries 
 npm install axios bootstrap vue-chartjs chart.js
+
+#### Resources 
+https://chatgpt.com/share/67296eae-f904-8008-af30-abf2a8af5f8b
+<br>
+Cursor for debugging
+<br>
+CIS 3339-midterm-jprebele file for refrence
+<br>
+class notes and modules
